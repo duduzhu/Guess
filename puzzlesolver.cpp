@@ -1,5 +1,4 @@
 #include "puzzlesolver.h"
-
 #include <iostream>
 
 void PuzzleSolver::show_possibility()
@@ -82,6 +81,9 @@ Guess & PuzzleSolver::next_guess()
 {
     _guess_times++;
     _last=*_guessSet.begin();
+    if(_guess_times == 1)
+	return *_last;
+
     unsigned long long total_times=1;
     for(std::set<Guess *>::iterator it=_guessSet.begin();it!=_guessSet.end();++it)
     {
