@@ -1,12 +1,13 @@
 #include "puzzlesolver.h"
+#include "mypuzzlesolver.h"
 #include <iostream>
 
-void PuzzleSolver::show_possibility()
+void MyPuzzleSolver::show_possibility()
 {
     for(std::set<Guess *>::iterator it=_guessSet.begin();it!=_guessSet.end();++it)
 	(*it)->print();	
 }
-void PuzzleSolver::show_matrix()
+void MyPuzzleSolver::show_matrix()
 {
      std::cout<<_guessSet.size()<<" possibilities remain."<<std::endl;
      for(int i=0;i<SLOTS;i++)
@@ -19,7 +20,7 @@ void PuzzleSolver::show_matrix()
 	std::cout<<std::endl;
      }
 }
-void PuzzleSolver::init()
+void MyPuzzleSolver::init()
 {
      _last=NULL;
      _guess_times = 0;
@@ -40,7 +41,7 @@ void PuzzleSolver::init()
      }
 }
 
-void PuzzleSolver::add_possibility(Guess * pGuess) //Done
+void MyPuzzleSolver::add_possibility(Guess * pGuess) //Done
 {
      if(!pGuess->isValid())
        return;
@@ -51,7 +52,7 @@ void PuzzleSolver::add_possibility(Guess * pGuess) //Done
      }
      _guessSet.insert(pGuess);
 }
-void PuzzleSolver::remove_possibility(Guess * pGuess) //Done
+void MyPuzzleSolver::remove_possibility(Guess * pGuess) //Done
 {
      if(!pGuess->isValid())
        return;
@@ -63,7 +64,7 @@ void PuzzleSolver::remove_possibility(Guess * pGuess) //Done
      delete pGuess;
      _guessSet.erase(pGuess);
 }
-PuzzleSolver::~PuzzleSolver()
+MyPuzzleSolver::~MyPuzzleSolver()
 {
     for(std::set<Guess *>::iterator it=_guessSet.begin();it!=_guessSet.end();++it)
     {
@@ -71,13 +72,13 @@ PuzzleSolver::~PuzzleSolver()
     }
     _guessSet.clear();
 }
-PuzzleSolver::PuzzleSolver() //Done
+MyPuzzleSolver::MyPuzzleSolver() //Done
 {
-  this->~PuzzleSolver();
+  this->~MyPuzzleSolver();
   init();
 }
 
-Guess & PuzzleSolver::next_guess()
+Guess & MyPuzzleSolver::next_guess()
 {
     _guess_times++;
     _last=*_guessSet.begin();
@@ -102,7 +103,7 @@ Guess & PuzzleSolver::next_guess()
     return *_last;
 }
 
-void PuzzleSolver::answer_is(Result a_result) //Done
+void MyPuzzleSolver::answer_is(Result a_result) //Done
 {
     std::set<Guess *> toBeRemoved;
     for(std::set<Guess *>::iterator it=_guessSet.begin();it!=_guessSet.end();++it)
@@ -121,7 +122,7 @@ void PuzzleSolver::answer_is(Result a_result) //Done
     toBeRemoved.clear();
 }
 
-int PuzzleSolver::report()
+int MyPuzzleSolver::report()
 {
     return _guess_times;
 }
