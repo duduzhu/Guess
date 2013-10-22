@@ -18,12 +18,12 @@ public:
 class Guess
 {
       int _array[SLOTS];
-       void next();
+      void next();
 public:
       void nextValid();	
       void reset();
       bool isValid();
-	bool isMAX();
+      bool isMAX();
       int & operator[](int index);
       Guess(Guess &);
       Guess();
@@ -35,7 +35,7 @@ public:
 
 class Puzzle{
 private:
-  Guess           _answer;
+  Guess            _answer;
   bool             _isSolved;
 public:
   Puzzle();

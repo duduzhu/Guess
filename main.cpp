@@ -1,25 +1,27 @@
 #include <cstdlib>
 #include <iostream>
-#include "puzzlesolver.h"
-#define TOTAL_TIMES 10000
+#include "mypuzzlesolver.h"
+#define TOTAL_TIMES 1000
 using namespace std;
 
 int play()
 {
-    PuzzleSolver solver;
+    MyPuzzleSolver * pSolver = new MyPuzzleSolver;
     Puzzle puzzle;
     
     while(!puzzle.isSolved())
     {
-	//solver.show_matrix();
-	//solver.show_possibility();
-	Guess myguess=solver.next_guess();
+	//pSolver->show_matrix();
+	//pSolver->show_possibility();
+	Guess myguess=pSolver->next_guess();
         Result thisanswer = puzzle.guess(myguess);
-        solver.answer_is(thisanswer);
+        pSolver->answer_is(thisanswer);
         //cout<<"Guess: "; myguess.print();
         //cout<<"Answer: "; thisanswer.print();
     }
-    return solver.report();
+    int result =  pSolver->report();
+    delete pSolver;
+    return result;
 }
 void statistic(int times)
 {
@@ -36,16 +38,17 @@ void statistic(int times)
 }
 void solve_for_human()
 {
-     PuzzleSolver solver;
+     MyPuzzleSolver * pSolver = new MyPuzzleSolver;
      Result theResult;
      do{
-            solver.next_guess().print();
+            pSolver->next_guess().print();
             cout<<"A:";
             cin>>theResult.A;
             cout<<"B:";
             cin>>theResult.B;
-            solver.answer_is(theResult);
+            pSolver->answer_is(theResult);
      }while(theResult.A!=SLOTS);
+    delete pSolver;
 }
 int main(int argc, char *argv[])
 {
