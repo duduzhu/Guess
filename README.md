@@ -21,4 +21,4 @@ puzzlesolver.cpp
 若每次均给出集合中迭代器的第一个成员，则在debian 5.0 intel i386 gcc 4.4.5 跑出的10000次平均次数是5.4841次
 算法中实际采用的猜测是出现概率最大的一个，这样可以将平均次数降低到5.4306
 
-从信息论的角度，对此可以有所丈量，详见 http://blog.wangnan.me/
+从信息论的角度，对此可以有所[丈量](http://blog.wangnan.me/archives/12482)
